@@ -1,6 +1,6 @@
 # sensor-dashboard-oled-display
 
-Reads sensor data from [sensor dashboard](http://sensor-dashboard.trina.si/) [backend](https://github.com/xtrinch/sensor-dashboard-nestjs-backend/).
+Reads sensor data from [sensor dashboard](http://sensor-dashboard.trina.si/) [backend](https://github.com/xtrinch/sensor-dashboard-nestjs-backend/) and displays it on a PCD8544 nokia OLED display.
 
 Built with PlatformIO.
 
@@ -12,7 +12,8 @@ Built with PlatformIO.
 4. Input your WiFi's SSID, password and sensor access token with visiting this URL `192.168.4.1/?ssid=mySSID&password=myPassword&access_token=mysensoraccesstoken`
 
 ## Components
-- Firebeetle ESP8266 or devkit v1 ESP32 (with minimal changes would work for other esp boards also)
+- ESP32/ESP8266 dev board (I was using devkit v1)
 - pushbutton (for resetting credentials & token)
 - resistor
 - 3.7V LiPo battery (or other)
+- PCD8544 nokia OLED display
