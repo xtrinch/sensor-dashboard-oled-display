@@ -18,6 +18,6 @@
 #define CFG_SENSOR_DASHBOARD_URL xstr(SENSOR_DASHBOARD_URL)
 
 bool setupWiFi();
-StaticJsonDocument<200> readMeasurements();
+StaticJsonDocument<800> readMeasurements();
 
 #endif

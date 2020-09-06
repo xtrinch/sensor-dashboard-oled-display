@@ -25,7 +25,7 @@ bool setupWiFi() {
   return true;
 }
 
-StaticJsonDocument<200> readMeasurements() {
+StaticJsonDocument<800> readMeasurements() {
   http.begin("http://" + String(CFG_SENSOR_DASHBOARD_URL) + "/api/measurements/display");
 
   http.addHeader("Accept", "application/json");
@@ -37,7 +37,7 @@ StaticJsonDocument<200> readMeasurements() {
     Serial.println(httpResponseCode);
     String payload = http.getString();
 
-    StaticJsonDocument<200> doc;
+    StaticJsonDocument<800> doc;
     deserializeJson(doc, payload.c_str());
     //Serial.println(payload);
     http.end();
