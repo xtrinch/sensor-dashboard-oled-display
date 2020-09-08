@@ -17,3 +17,9 @@ Built with PlatformIO.
 - resistor
 - 3.7V LiPo battery (or other)
 - PCD8544 nokia OLED display
+
+## Schematic
+
+Schematic below is made for ESP32 devkit v1.
+
+![Image of Yaktocat](https://github.com/sensor-dashboard/sensor-dashboard-oled-display/blob/master/images/schematic.png)
