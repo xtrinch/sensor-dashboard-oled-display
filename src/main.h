@@ -7,10 +7,11 @@
 #include "station.h"
 #include "access-point.h"
 #include "sleep.h"
+#include "pushbutton.h"
 
 #include <Arduino.h>
 #include <Wire.h>
 #include <SPI.h>
 
-#define REFRESH_RATE 10 // sec
+#define DISPLAY_REFRESH_RATE 10 // sec
 #endif
