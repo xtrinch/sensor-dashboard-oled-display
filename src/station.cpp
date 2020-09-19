@@ -3,33 +3,44 @@
 HTTPClient http;
 
 bool setupWiFi() {
-  int wifiRetriesLeft = 50;
+  int wifiRetriesLeft = WIFI_CONNECT_RETRIES;
 
-  Config credentials = readConfig();
+  char ssid[60];
+  readFromEEPROM(ssid, "ssid");
+  char password[60];
+  readFromEEPROM(password, "password");
 
-  WiFi.begin(credentials.ssid.c_str(), credentials.password.c_str());
+  WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED && wifiRetriesLeft > 0) {
     delay(500);
-    Serial.println("Connecting to WiFi with SSID " + credentials.ssid + " and password " + credentials.password);
+    ardprintf("Station: Connecting with SSID %s", ssid);
+    ardprintf("Station: Connecting with password %s", password);
+
     wifiRetriesLeft -= 1;
   }
 
   if (wifiRetriesLeft <= 0 || WiFi.status() != WL_CONNECTED) {
-    Serial.println("Could not connect to WiFi.");
+    ardprintf("Station: Could not connect to WiFi.");
     return false;
   }
   
-  Serial.println("Connected to WiFi");
+  ardprintf("Station: Connected to WiFi");
 
+  http.begin("http://" + String(CFG_SENSOR_DASHBOARD_URL) + "/api/measurements/multi");
   return true;
 }
 
 StaticJsonDocument<800> readMeasurements() {
+  StaticJsonDocument<800> doc;
+
   http.begin("http://" + String(CFG_SENSOR_DASHBOARD_URL) + "/api/measurements/display");
 
   http.addHeader("Accept", "application/json");
-  http.addHeader("Authorization", readFromEEPROM("access_token"));
+  char accessToken[60];
+  readFromEEPROM(accessToken, "access_token");
+
+  http.addHeader("Authorization", accessToken);
   int httpResponseCode = http.GET();
 
   if (httpResponseCode > 0 && httpResponseCode < 400) {
@@ -37,11 +48,9 @@ StaticJsonDocument<800> readMeasurements() {
     Serial.println(httpResponseCode);
     String payload = http.getString();
 
-    StaticJsonDocument<800> doc;
     deserializeJson(doc, payload.c_str());
     //Serial.println(payload);
     http.end();
-    return doc;
   }
   else {
     Serial.print("Error code: ");
@@ -50,4 +59,6 @@ StaticJsonDocument<800> readMeasurements() {
     Serial.println(payload);
     http.end();
   }
+
+  return doc;
 }

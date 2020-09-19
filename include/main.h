@@ -1,17 +1,18 @@
 #ifndef MAIN_H_INCLUDED
 #define MAIN_H_INCLUDED
 
-#include "U8g2lib.h"
-
 #include "common.h"
-#include "station.h"
+#include "eeprom-handler.h"
 #include "access-point.h"
-#include "sleep.h"
+#include "station.h"
 #include "pushbutton.h"
+#include "sleep.h"
 
 #include <Arduino.h>
 #include <Wire.h>
 #include <SPI.h>
+#include "U8g2lib.h"
 
 #define DISPLAY_REFRESH_RATE 10 // sec
+
 #endif

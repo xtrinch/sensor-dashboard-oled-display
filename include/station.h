@@ -11,11 +11,12 @@
 #endif
 
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include "common.h"
 #include "eeprom-handler.h"
-#include <ArduinoJson.h>
 
 #define CFG_SENSOR_DASHBOARD_URL xstr(SENSOR_DASHBOARD_URL)
+#define WIFI_CONNECT_RETRIES 50
 
 bool setupWiFi();
 StaticJsonDocument<800> readMeasurements();

@@ -17,7 +17,7 @@ void setup() {
   // uncomment when you want to programmatically clear config
   // clearConfig();
 
-  if (!configSaved()) {
+  if (!isConfigSaved()) {
     if (!setupAP()) {
       goToSleep();
     }

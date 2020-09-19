@@ -5,7 +5,7 @@
 #include "common.h"
 #include "eeprom-handler.h"
 
-#define BTN_PIN 21
+#define BTN_PIN 13
 #define BTN_PRESS_LENGTH 2000 //ms
 #define BTN_SAMPLE_INTERVAL 25
 #define BTN_RESET_CYCLES 80    // 80 * 25 = 2000 ms
